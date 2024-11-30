@@ -1,30 +1,6 @@
-/*--------------------------------------------------------------------------------------------------*
- *                                         Util Functions                                           *
- *                                         Genna Olavarri                                           *
- *                                            11-2024                                               *
- *--------------------------------------------------------------------------------------------------*/
-
-/* This file contains utility functions for the phishing detection web app. */
-
-/*--------------------------------------------------------------------------------------------------*/
-
-// React imports
 import React, { useState, useEffect } from 'react';
 
-/*--------------------------------------------------------------------------------------------------*/
-
 function TypingEffect({searchText, setSearchText}) {
-  /*
-    This component creates a typing effect in the search bar placeholder.
-
-    Parameters:
-    - searchText: the current search text
-    - setSearchText: the function to update the search text
-
-    Returns:
-    - an input element with a typing effect placeholder
-  */
-    // Placeholder messages to cycle through
     const placeholderMessages = React.useMemo(() => [
         "Want free money??...",
         "Well hello there! I am a prince...",
@@ -43,46 +19,36 @@ function TypingEffect({searchText, setSearchText}) {
     
         let typingInterval;
         let deletingInterval;
-        // Local variable to track current text
-        let currentText = '';
+        let currentText = ''; // Local variable to track current text
     
         const typeMessage = (message) => {
           let charIndex = 0;
           typingInterval = setInterval(() => {
             if (charIndex < message.length) {
-              // Update the local variable
-              currentText += message[charIndex];
-              // Update the placeholder to the current value of the local variable
-              setPlaceholder(currentText);
+              currentText += message[charIndex]; // Update the local variable
+              setPlaceholder(currentText); // Update the placeholder with the local variable
               charIndex++;
             } else {
               clearInterval(typingInterval);
-              // Pause for 1 second before deleting
-              setTimeout(() => deleteMessage(message), 1000);
+              setTimeout(() => deleteMessage(message), 1000); // Pause before deleting
             }
-            // Determines the typing speed (lower number = faster typing)
-          }, 80);
+          }, 80); // Typing speed
         };
     
         const deleteMessage = (message) => {
           let charIndex = message.length;
           deletingInterval = setInterval(() => {
             if (charIndex > 0) {
-              // Delete the last character from the local variable
-              currentText = currentText.slice(0, -1);
-              // Update the placeholder with the local variable value
-              setPlaceholder(currentText);
+              currentText = currentText.slice(0, -1); // Remove last character from the local variable
+              setPlaceholder(currentText); // Update the placeholder with the local variable
               charIndex--;
             } else {
               clearInterval(deletingInterval);
-              // Move to the next message
-              setCurrentIndex((prevIndex) => (prevIndex + 1) % placeholderMessages.length);
+              setCurrentIndex((prevIndex) => (prevIndex + 1) % placeholderMessages.length); // Move to the next message
             }
-            // Determines the deleting speed (lower number = faster deleting)
-          }, 40);
+          }, 40); // Deleting speed
         };
     
-        // Start typing the first message
         typeMessage(placeholderMessages[currentIndex]);
     
         return () => {
@@ -95,36 +61,22 @@ function TypingEffect({searchText, setSearchText}) {
                   className="Message-input"
                   placeholder={placeholder} 
                   value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
+                  onChange={(e) => setSearchText(e.target.value)}  // Update state on change
                 />;
 }
 
 function HandleSearch(search_input) {
-  /*
-    This function handles the search input from the user.
-
-    Parameters:
-    - search_input: the user's search input
-
-    Returns:
-    - a paragraph element displaying the search input
-  */
     return <p>Searching for: {search_input}</p>;
 }
 
 function LoadingEffect() {
-  /*
-    This component creates a loading effect with dots that cycle through.
-
-    Returns:
-    - a paragraph element with a loading message
-  */
+  // Make each dot appear after 1 second
 
   const [dots, setDots] = useState('');
   useEffect(() => {
     const interval = setInterval(() => {
       setDots((prevDots) => (prevDots.length >= 3 ? '' : prevDots + '.'));
-    }, 500);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
