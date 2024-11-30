@@ -14,7 +14,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import uvicorn
 from loguru import logger
-import os
 
 # Local imports
 from analysis import get_analysis
