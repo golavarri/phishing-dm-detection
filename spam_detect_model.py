@@ -91,7 +91,7 @@ def save_model(model, vectorizer, model_path="model.pkl", vectorizer_path="vecto
 # Step 5: Main Execution Flow (Example Usage)
 # Uncomment below for testing locally with an example dataset
 
-file_path = "new_data.csv"  # Replace with your dataset path
+file_path = "longer_dataset.csv"  # Replace with your dataset path
 X, y = load_and_preprocess_data(file_path)
 X_transformed, tfidf_vectorizer = preprocess_texts(X)
 trained_model, eval_report = train_and_evaluate(X_transformed, y)
@@ -126,7 +126,7 @@ def predict_message(example_text, model_path="model.pkl", vectorizer_path="vecto
     return predicted_label, predicted_probabilities
 
 # Example Usage
-example_message = "Hello steve, your shipment from UPS will arrive today. Click here to track your package"
+example_message = "I just saw your Snapchat video and I think it's amazing! Want to be friends?"
 label, probabilities = predict_message(example_message)
 print(f"Predicted Label: {label}")
 print(f"Probabilities: {probabilities}")
