@@ -1,6 +1,6 @@
 {
   "short_name": "is this phishing?",
-  "name": "Create React App Sample",
+  "name": "Phishing Detection Application",
   "icons": [
     {
       "src": "images/phishinglogo.png",
